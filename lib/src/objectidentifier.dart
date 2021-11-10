@@ -222,6 +222,19 @@ class ObjectIdentifier {
           null: 'dod',
           1: {
             null: 'internet',
+            4: {
+              null: 'private',
+              1: {
+                null: 'enterprise, enterprises',
+                311: {
+                  null: 'microsoft',
+                  21: {
+                    7: 'certificateTemplate',
+                    10: 'applicationCertPolicies',
+                  }
+                }
+              }
+            },
             5: {
               null: 'security',
               5: {
