@@ -228,8 +228,22 @@ class ObjectIdentifier {
                 null: 'enterprise, enterprises',
                 311: {
                   null: 'microsoft',
+                  10: {
+                    3: {
+                      13: 'lifetimeSigning',
+                    },
+                  },
+                  20: {
+                    null: '20_',
+                    1: 'caVersion',
+                    2: 'enrollCerttypeExtension',
+                  },
                   21: {
-                    7: 'certificateTemplate',
+                    null: 'microsoft oids',
+                    1: 'caVersion',
+                    2: 'prevCaCertHash',
+                    7: 'certificateTemplateV2',
+                    8: '8_',
                     10: 'applicationCertPolicies',
                   }
                 }

@@ -62,6 +62,8 @@ class Extension {
 abstract class ExtensionValue {
   static const ceId = ObjectIdentifier([2, 5, 29]);
   static const peId = ObjectIdentifier([1, 3, 6, 1, 5, 5, 7, 1]);
+  static const microsoftIdV1 = ObjectIdentifier([1, 3, 6, 1, 4, 1, 311, 20]);
+  static const microsoftIdV2 = ObjectIdentifier([1, 3, 6, 1, 4, 1, 311, 21]);
 
   const ExtensionValue();
 
@@ -101,8 +103,70 @@ abstract class ExtensionValue {
           return AuthorityInformationAccess.fromAsn1(obj as ASN1Sequence);
       }
     }
+    if (id.parent == microsoftIdV1) {
+      switch (id.nodes.last) {
+        case 1:
+          return MicrosoftCAVersion.fromAsn1(obj as ASN1Integer);
+        case 2:
+          return MicrosoftEnrollCerttypeExtension.fromAsn1(obj as ASN1BMPString);
+      }
+    }
+    if (id.parent == microsoftIdV2) {
+      switch (id.nodes.last) {
+        case 1:
+          return MicrosoftCAVersion.fromAsn1(obj as ASN1Integer);
+        case 2:
+          return MicrosoftPrevCACertHash.fromAsn1(obj as ASN1OctetString);
+        case 7:
+          return MicrosoftCertTemplateV2.fromAsn1(obj as ASN1Sequence);
+        case 8:
+          return MicrosoftCertTemplateV2.fromAsn1(obj as ASN1Sequence);
+        case 10:
+          return MicrosoftAppPolicies.fromAsn1(obj as ASN1Sequence);
+      }
+    }
     throw UnimplementedError(
         'Cannot handle $id (${id.parent} ${id.nodes.last})');
+  }
+}
+
+class MicrosoftCAVersion extends ExtensionValue {
+  MicrosoftCAVersion();
+
+  factory MicrosoftCAVersion.fromAsn1(ASN1Integer integer) {
+    return MicrosoftCAVersion();
+  }
+}
+
+class MicrosoftEnrollCerttypeExtension extends ExtensionValue {
+  MicrosoftEnrollCerttypeExtension();
+
+  factory MicrosoftEnrollCerttypeExtension.fromAsn1(ASN1BMPString bmpString) {
+    return MicrosoftEnrollCerttypeExtension();
+  }
+}
+
+class MicrosoftPrevCACertHash extends ExtensionValue {
+  MicrosoftPrevCACertHash();
+
+  factory MicrosoftPrevCACertHash.fromAsn1(ASN1OctetString sequence) {
+    return MicrosoftPrevCACertHash();
+  }
+}
+
+class MicrosoftCertTemplateV2 extends ExtensionValue {
+  MicrosoftCertTemplateV2();
+
+  factory MicrosoftCertTemplateV2.fromAsn1(ASN1Sequence sequence) {
+    return MicrosoftCertTemplateV2();
+  }
+}
+
+class MicrosoftAppPolicies extends ExtensionValue {
+  MicrosoftAppPolicies();
+
+  factory MicrosoftAppPolicies.fromAsn1(ASN1Sequence sequence) {
+    return MicrosoftAppPolicies();
   }
 }
 
