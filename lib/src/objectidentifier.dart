@@ -235,7 +235,7 @@ class ObjectIdentifier {
                   },
                   20: {
                     null: '20_',
-                    1: 'caVersion',
+                    1: 'autoEnrollCtlUsage',
                     2: 'enrollCerttypeExtension',
                   },
                   21: {
